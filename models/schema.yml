@@ -1,0 +1,12 @@
+
+version: 2
+
+sources:
+
+    - name: adp_workspaces_ae
+      description: adp workspaces
+      database: adp_workspaces
+      schema: ae
+      tables:
+          - name: sources_for_fuzzy
+            description: source table for fuzzy
