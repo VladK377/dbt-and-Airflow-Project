@@ -15,39 +15,32 @@ This project involves automating data processing workflows using **dbt** (Data B
 
 ### Components:
 1. **Data Aggregation**:
-    - Macros created in dbt 'listagg_grouped.sql'. Macros requres
-    - Using SQL queries and dbt models to perform the aggregation.
-    - Results are stored in a specified Snowflake table.
+    - The macro `listagg_grouped.sql` in dbt is used for data aggregation.
+    - This macro requires the full table name and the column for grouping to be specified.
+    - All other columns are automatically aggregated using the `LISTAGG` function.
+    - In the file `pre_fuzzy_aggregated.sql`, the table is aggregated utilizing this macro.
+    - The results are stored in the Snowflake table `ADP_WORKSPCES.AE.PRE_FUZZY_AGGREGATED`.
 
 2. **Data Cleansing**:
-    - Identifying and applying data cleansing operations to clean the data.
-    - Implementing the cleansing process with Python and/or SQL.
-    - Storing the cleansed data in a specified database table.
+    - Data cleansing is performed in the `adp_work.py` script.
+    - The cleansed data is stored in the Snowflake table `ADP_WORKSPCES.AE.PRE_FUZZY_CLEANSED`.
 
 3. **Fuzzy Matching**:
-    - Implementing fuzzy matching logic from the Alteryx workflows.
-    - Using Python libraries like `fuzzywuzzy` to match records.
-    - Storing matched data in Snowflake.
+    - Fuzzy matching is implemented using the `thefuzz` library.
+    - The script for fuzzy matching is located in the `adp_work.py` file.
+    - The results are stored in the Snowflake table `ADP_WORKSPCES.AE.PRE_FUZZY_RESULT`.
 
 4. **dbt Models**:
-    - dbt models are created to encapsulate SQL transformations and aggregations.
-    - Ensuring that dbt models are well-structured and following best practices.
+    - dbt models are created to encapsulate the SQL transformations and aggregations.
+    - Ensure that the dbt models follow best practices and are well-structured.
 
 5. **Airflow DAGs**:
-    - Orchestrating the workflow using Airflow DAGs that trigger dbt models and Python scripts.
-    - DAGs are modular, reusable, and follow best practices to ensure smooth execution.
+    - Data cleansing and orchestration are managed in the `dbt_pipeline.py` file using Airflow.
+ 
 
-## Setup Instructions
 
-### Prerequisites
-- Python 3.x
-- Apache Airflow
-- dbt (Data Build Tool)
-- Snowflake account for data storage (optional, depending on your project setup)
 
-### Installation
-
-#### 1. Clone the Repository
+####  Clone the Repository
 ```bash
 git clone https://github.com/VladK377/dbt-and-Airflow-Project.git
 cd dbt-and-Airflow-Project
